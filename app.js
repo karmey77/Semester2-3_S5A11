@@ -7,8 +7,9 @@ const express = require('express')
 const mongoose = require('mongoose') // 載入 mongoose
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-// const Url = require('./models/Url')
 const app = express()
+const routes = require('./routes') // 引用路由器
+const methodOverride = require('method-override')
 const port = 3000
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
@@ -16,6 +17,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(express.static('public'))
+app.use(methodOverride('_method'))
+app.use(routes) // 將 request 導入路由器
+
 
 // 取得資料庫連線狀態
 const db = mongoose.connection
@@ -28,9 +32,11 @@ db.once('open', () => {
     console.log('mongodb connected!')
 })
 
-app.get('/', (req, res) => {
-    res.render('index')
-})
+// app.get('/', (req, res) => {
+//     res.render('index')
+// })
+app.use(express.static('public'))
+
 
 // start and listen on the Express server
 app.listen(port, () => {
