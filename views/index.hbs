@@ -1,0 +1,35 @@
+<header>
+    <!-- navigation -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="https://scontent.ftpe4-2.fna.fbcdn.net/v/t1.6435-9/48367595_2050075931766234_1677474854128844800_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ylO3mG4JpncAX9vfXKN&_nc_ht=scontent.ftpe4-2.fna&oh=00_AfD0GcYXQg0NuBGlp4x_UWHldhU2sSlazvlwzCHhlekvuw&oe=648FEA4B"
+                    width="30" height="30" class="d-inline-block align-top" alt="青蛙國王icon">
+                青蛙國王縮網址
+            </a>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="container col-6" style="width: 500px; height: 500px;
+    position: absolute; top:0; bottom: 0; left: 0; right: 0; margin: auto;">
+        <div class="search-bar-outer">
+            <div class="search-bar-inner">
+                <form action="/create">
+                    <h1 class="mb-2" style="text-align: center;">URL shortener</h1>
+                    <center>
+                        <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png" style="width: 70%; padding:10%" alt="">
+                    </center>
+                    <div class="input-group">
+                        <input type="text" name="fullUrl" class="form-control" placeholder="輸入網址" inputmode="url"
+                            aria-label="Full url" value="{{urlFull}}" aria-describedby="search-button">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" id="search-button">產生短網址</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
