@@ -19,14 +19,28 @@
                 <form action="/create" method="post">
                     <h1 class="mb-2" style="text-align: center;">URL shortener</h1>
                     <center>
-                        <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png" style="width: 70%; padding:10%" alt="">
+                        <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
+                            style="width: 70%; padding:10%" alt="">
                     </center>
                     <div class="input-group">
-                        <input type="text" name="fullUrl" class="form-control" placeholder="輸入網址" inputmode="url"
-                            aria-label="Full url" value="{{fullUrl}}" aria-describedby="search-button">
+                        {{!-- 在input新增了 inputmode="url" 以及 id="fullUrl" --}}
+                        <input type="text" id="fullUrl" name="fullUrl" class="form-control" placeholder="輸入網址"
+                            inputmode="url" aria-label="Full url" value="{{fullUrl}}" aria-describedby="search-button">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit" id="search-button">產生短網址</button>
+                            <button class="btn btn-primary" type="submit" id="search-button"
+                                onClick="return empty()">產生短網址</button>
                         </div>
+                        {{!-- 新增檢查功能 --}}
+                        <script>
+                            function empty() {
+                                let x
+                                x = document.getElementById("fullUrl").value
+                                if (x == "") {
+                                    alert("請輸入內容！")
+                                    return false
+                                };
+                            }
+                        </script>
                     </div>
                 </form>
             </div>

@@ -27,7 +27,8 @@ router.post('/', (req, res) => {
     } else { // If this is existed one
         return Url.find()
             .lean()
-            .then((urls) => urls.filter(url => url.fullUrl.toString() === fullUrl))
+            // return the generated Url
+            .then((urls) => urls.filter(url => url.fullUrl.toString() === fullUrl)) 
             .then((url) => url[0])
             .then((url) => res.render('show', { shortUrl: url.shortUrl }))
             .catch(error => console.log(error))
