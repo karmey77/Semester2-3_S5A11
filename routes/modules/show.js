@@ -7,32 +7,31 @@ const generateRandomText = require('./../../models/randomText')
 // 定義路由
 // create and post to server
 router.post('/', (req, res) => {
-    const fullUrl = req.body.fullUrl
+    const fullUrl = req.body.fullUrl;
 
-    // Check if there is the same link
-    // If this is new one
-    if (!Url.find()
-        .lean()
-        .then((urls) => urls.some(url => url.fullUrl === fullUrl))) {
-        const shortUrl = generateRandomText(5)
+    (async () => {
+        try {
+            // Check if there is the same link
+            const existingUrl = await Url.findOne({ fullUrl }).lean();
+            if (!existingUrl) {
+                // If this is a new URL
+                console.log('This is a new URL');
+                const shortUrl = generateRandomText(5);
+                await Url.create({
+                    shortUrl,
+                    fullUrl,
+                });
 
-        return Url.create(
-            {
-                shortUrl: shortUrl,
-                fullUrl: fullUrl
+                return res.render('show', { shortUrl });
+            } else {
+                // If this is an existing URL
+                console.log('This is an existing URL');
+                return res.render('show', { shortUrl: existingUrl.shortUrl });
             }
-        )     // 存入資料庫
-            .then((url) => res.render('show', { shortUrl: url.shortUrl }))
-            .catch(error => console.log(error))
-    } else { // If this is existed one
-        return Url.find()
-            .lean()
-            // return the generated Url
-            .then((urls) => urls.filter(url => url.fullUrl.toString() === fullUrl)) 
-            .then((url) => url[0])
-            .then((url) => res.render('show', { shortUrl: url.shortUrl }))
-            .catch(error => console.log(error))
-    }
+        } catch (error) {
+            console.error(error);
+        }
+    })();
 })
 
 // 匯出路由模組
