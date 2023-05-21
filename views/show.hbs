@@ -23,12 +23,12 @@
                 </center>
                 <div>
                     <h2 class="mb-2" style="text-align: center;">Success! Please use this link:</h1>
-                        <a href="{{shortUrl}}">{{shortUrl}}</a>
+                        <a href="http://localhost:3000/{{shortUrl}}"><p>http://localhost:3000/{{shortUrl}}</p></a>
                         <button class="btn btn-success" onclick="copyText()" id="search-button">Copy!</button>
                         <script>
                             function copyText() {
                                 /* Copy text into clipboard */
-                                navigator.clipboard.writeText({{ shortUrl }});
+                                navigator.clipboard.writeText("http://localhost:3000/{{shortUrl}}");
                                 }
                         </script>
                 </div>

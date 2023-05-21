@@ -20,7 +20,6 @@ app.use(express.static('public'))
 app.use(methodOverride('_method'))
 app.use(routes) // 將 request 導入路由器
 
-
 // 取得資料庫連線狀態
 const db = mongoose.connection
 // 連線異常
@@ -32,11 +31,7 @@ db.once('open', () => {
     console.log('mongodb connected!')
 })
 
-// app.get('/', (req, res) => {
-//     res.render('index')
-// })
 app.use(express.static('public'))
-
 
 // start and listen on the Express server
 app.listen(port, () => {

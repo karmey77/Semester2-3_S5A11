@@ -16,14 +16,14 @@
     position: absolute; top:0; bottom: 0; left: 0; right: 0; margin: auto;">
         <div class="search-bar-outer">
             <div class="search-bar-inner">
-                <form action="/create">
+                <form action="/create" method="post">
                     <h1 class="mb-2" style="text-align: center;">URL shortener</h1>
                     <center>
                         <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png" style="width: 70%; padding:10%" alt="">
                     </center>
                     <div class="input-group">
                         <input type="text" name="fullUrl" class="form-control" placeholder="輸入網址" inputmode="url"
-                            aria-label="Full url" value="{{urlFull}}" aria-describedby="search-button">
+                            aria-label="Full url" value="{{fullUrl}}" aria-describedby="search-button">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="submit" id="search-button">產生短網址</button>
                         </div>
