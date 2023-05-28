@@ -1,22 +1,18 @@
-const mongoose = require('mongoose')
-const Url = require('../url') // 載入 restaurant model
-const urlSeed = [{
-    shortUrl: "randomText",
-    fullUrl: "https://google.com"
-},]
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
-
-db.on('error', () => {
-    console.log('mongodb error!')
-})
+const db = require('../../config/mongoose')
+const Url = require('../Url') // 載入 restaurant model
+const urlSeed = [{
+    shortUrl: "randomText",
+    fullUrl: "https://google.com"
+}, {
+    shortUrl: "2sda1",
+    fullUrl: "https://facebook.com"
+}]
 
 db.once('open', () => {
-    console.log('mongodb connected!')
     urlSeed.forEach(url => {
         Url.create(url)
     });
